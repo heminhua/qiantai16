@@ -1,0 +1,20 @@
+<template>
+    <div>
+        <!-- 公共头部 -->
+        <app-header></app-header>
+        <router-view></router-view>
+    </div>
+</template>
+
+<script>
+import Header from "../subcom/Header.vue";
+export default {
+    components: {
+        appHeader:Header,
+    }
+};
+</script>
+
+<style scoped>
+
+</style>
