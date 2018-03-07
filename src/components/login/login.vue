@@ -1,24 +1,24 @@
 <template>
-    <div class="login">
-        <section>
-            <!-- element-ui插件 表单验证-->
-            <el-form label-position="top" :model="loginCheck" status-icon :rules="loginRules" ref="loginCheck" label-width="100px" class="demo-ruleForm">
-                <el-form-item label="用户名" prop="uname">
-                    <el-input type="text" v-model="loginCheck.uname" auto-complete="off"></el-input>
-                </el-form-item>
-                <el-form-item label="密码" prop="upwd">
-                    <el-input type="password" v-model="loginCheck.upwd" auto-complete="off"></el-input>
-                </el-form-item>
+  <div class="login">
+    <section>
+      <!-- element-ui插件 表单验证-->
+      <el-form label-position="top" :model="loginCheck" status-icon :rules="loginRules" ref="loginCheck" label-width="100px" class="demo-ruleForm">
+        <el-form-item label="用户名" prop="user_name">
+          <el-input type="text" v-model="loginCheck.user_name" auto-complete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="密码" prop="password">
+          <el-input type="password" v-model="loginCheck.password" auto-complete="off"></el-input>
+        </el-form-item>
 
-                <el-form-item>
-                    <el-button type="primary" @click="submitForm('loginCheck')">提交</el-button>
-                    <el-button @click="resetForm('loginCheck')">重置</el-button>
-                </el-form-item>
-            </el-form>
-            <!-- element-ui插件 表单验证-->
+        <el-form-item>
+          <el-button type="primary" @click="submitForm('loginCheck')">提交</el-button>
+          <el-button @click="resetForm('loginCheck')">重置</el-button>
+        </el-form-item>
+      </el-form>
+      <!-- element-ui插件 表单验证-->
 
-        </section>
-    </div>
+    </section>
+  </div>
 </template>
 
 <script>
@@ -43,28 +43,31 @@ export default {
       // labelPosition: 'top',
       // class:'position',
       loginCheck: {
-        uname: "",
-        upwd: ""
+        user_name: "ivanyb",
+        password: ""
       },
       loginRules: {
-        uname: [{ validator: validatePass, trigger: "blur" }],
-        upwd: [{ validator: validatePass2, trigger: "blur" }]
+        user_name: [{ validator: validatePass, trigger: "blur" }],
+        password: [{ validator: validatePass2, trigger: "blur" }]
       }
     };
   },
   methods: {
     login() {
       this.$http.post(this.$api.login, this.loginCheck).then(res => {
-        // console.log(res);
+        console.log(res);
 
         if (res.data.status == 0) {
           this.$alert("确定登录", "登录", {
             confirmButtonText: "确定",
             callback: () => {
-                //将用户名存到本地中
-              localStorage.setItem("admin", res.data.message.uname);
+              //将用户名存到本地中
+              // localStorage.setItem("admin", res.data.message.user_name);
               // console.log(res.data);
-              this.$router.push({ name: "admin" });
+              this.$router.push({ name: "goodsList" });
+              // let nextPage = this.$route.query.next || "/goods/list";
+              // 登陆成功后, 跳转到用户未登陆前要访问的页面
+              // this.$router.push({ path: nextPage });
             }
           });
         } else {

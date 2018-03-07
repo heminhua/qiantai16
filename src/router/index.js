@@ -14,7 +14,7 @@ Vue.use(Router)
 //商品路由
 let goods=[
   {name:'goodsList',path:'goods/list',component:GoodsList},
-  {name:'goodsDetail',path:'goods/detail',component:GoodsDetail},
+  {name:'goodsDetail',path:'goods/detail/:id',component:GoodsDetail},
 ]
 //订单信息路由
 let order=[
