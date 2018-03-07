@@ -26,6 +26,10 @@ let order=[
 let shopCart=[
   {name:'shopCart',path:'shopcart',component:ShopCart}
 ]
+// //评论车路由
+// let shopCart=[
+//   {name:'shopCart',path:'shopcart',component:ShopCart}
+// ]
 
 export default new Router({
   routes: [
